@@ -7,6 +7,7 @@ import { EventEntity } from './entitys/event.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { EventModule } from './modules/event/event.module';
 import { UserModule } from './modules/user/user.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -18,6 +19,10 @@ import { UserModule } from './modules/user/user.module';
       entities: ["dist/**/*.entity{.ts,.js}"],
     }),
     TypeOrmModule.forFeature([UserEntity, EventEntity]),
+    JwtModule.register({
+      secret: 'secret-key',
+      signOptions: { expiresIn: '1h', algorithm: 'RS256' },
+    }),
     AuthModule,
     EventModule,
     UserModule
