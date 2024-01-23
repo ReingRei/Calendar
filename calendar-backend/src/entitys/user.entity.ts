@@ -18,10 +18,10 @@ export class UserEntity {
     @Column({select: false, type: 'text'})
     password: string;
 
-    @CreateDateColumn({ type: 'timestamp' })
+    @CreateDateColumn({ type: 'datetime' })
     createdAt: Date;
 
-    @CreateDateColumn({ type: 'timestamp' })
+    @CreateDateColumn({ type: 'datetime' })
     updatedAt: Date;
 
     @OneToMany(() => EventEntity, (event) => event.author)

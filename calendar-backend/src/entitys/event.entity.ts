@@ -2,7 +2,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { UserEntity } from './user.entity';
 
-@Entity()
+@Entity('event')
 export class EventEntity {
   @PrimaryGeneratedColumn({type: 'int'})
   id: number;
@@ -10,10 +10,10 @@ export class EventEntity {
   @Column({ type: 'text' })
   description: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'datetime' })
   startTime: Date;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'datetime' })
   endTime: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.events)

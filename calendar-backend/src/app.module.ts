@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserEntity } from './entitys/user.entity';
+import { EventEntity } from './entitys/event.entity';
 
 @Module({
   imports: [
@@ -12,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       logging: true,
       entities: ["dist/**/*.entity{.ts,.js}"],
     }),
-    TypeOrmModule.forFeature([])
+    TypeOrmModule.forFeature([UserEntity, EventEntity])
   ],
   controllers: [AppController],
   providers: [AppService],
