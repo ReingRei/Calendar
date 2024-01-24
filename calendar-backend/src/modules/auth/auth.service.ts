@@ -2,8 +2,7 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import * as bcrypt from 'bcrypt';
 import { UserEntity } from "src/entitys/user.entity";
-import { JwtAuthService } from "./jwt.service";
-import { CreateUserDto, UserDto } from "src/common/dto";
+import { CreateUserDto } from "src/common/dto";
 import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
@@ -31,15 +30,15 @@ export class AuthService {
     throw new UnauthorizedException('Login incorreto.')
   }
 
-  private async _getAccesToken(user: UserEntity) {
+  private _getAccesToken(user: UserEntity): any {
     const payload = { name: user.name, sub: user.id };
     return {
-      access_token: this._jwtService.sign(payload),
+      access_token: payload,
+      // access_token: this._jwtService.sign(payload),
     };
   }
 
-  async registerUser(payload: CreateUserDto) {
-    
+  async registerUser(payload: CreateUserDto): Promise<{ access_token: string }> {
     const user = await this._userService.createUser(payload);
     return this._getAccesToken(user);
   }

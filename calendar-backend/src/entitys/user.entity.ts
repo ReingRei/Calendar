@@ -1,4 +1,4 @@
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { EventEntity } from "./event.entity";
 import * as bcrypt from 'bcrypt';
 
@@ -27,6 +27,9 @@ export class UserEntity {
 
     @OneToMany(() => EventEntity, (event) => event.author)
     events: EventEntity[];
+
+    @ManyToMany(() => EventEntity, (event) => event.guests)
+    invitations: EventEntity[];
 
     @BeforeInsert()
     @BeforeUpdate()
