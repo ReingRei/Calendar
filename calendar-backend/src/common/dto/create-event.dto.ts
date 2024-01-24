@@ -1,12 +1,12 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
-export class CreateUserDto {
+export class CreateEventDto {
     @IsNotEmpty()
     @IsString()
     name: string;
 
     @IsNotEmpty()
-    @IsEmail()
+    @IsString()
     email: string;
 
     @IsNotEmpty()

@@ -9,6 +9,10 @@ import { EventModule } from './modules/event/event.module';
 import { UserModule } from './modules/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 
+import * as crypto from 'crypto';
+
+console.log(crypto.randomBytes(16).toString('hex'));
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -20,8 +24,9 @@ import { JwtModule } from '@nestjs/jwt';
     }),
     TypeOrmModule.forFeature([UserEntity, EventEntity]),
     JwtModule.register({
-      secret: 'secret-key',
-      signOptions: { expiresIn: '1h', algorithm: 'RS256' },
+      secretOrPrivateKey: 'e3fff5764f30c6edf75a9c4d0f683a93',
+      secret: 'e3fff5764f30c6edf75a9c4d0f683a93',
+      signOptions: { expiresIn: '1h', algorithm: 'RS256',  },
     }),
     AuthModule,
     EventModule,
