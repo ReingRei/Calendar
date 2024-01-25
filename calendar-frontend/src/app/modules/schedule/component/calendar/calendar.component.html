@@ -1,0 +1,16 @@
+<div class="font-sans text-center m-5 w-80">
+    <div class="flex justify-between items-center mb-2">
+        <button (click)="previousMonth()">Anterior</button>
+        <span>{{ monthYear }}</span>
+        <button (click)="nextMonth()">Próximo</button>
+    </div>
+    <div class="days-header">
+        <div *ngFor="let day of daysOfWeek">{{ day }}</div>
+    </div>
+    <div class="days">
+        <div *ngFor="let day of calendarDays" (click)="selectDate(day)" 
+            class="p-2 rounded-full border cursor-pointer" [ngClass]="{'bg-primary-500 text-white'}">
+            {{ day.day }}
+        </div>
+    </div>
+</div>

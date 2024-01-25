@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 export class SenhaUtils {
     /**
-     * Método que retorna a foça da senha, a força mínima aceita é 3
-     * @param vc_senha String contendo o conteúdo da senha em text/plain
+     * Método que retorna a força da senha, a força mínima aceita é 3
+     * @param password String contendo o conteúdo da senha em text/plain
      * @returns inteiro de 0 até 3
      */
-    static getItForcaSenha(vc_senha): any {
-        const is_contem_maiuscula = /[A-Z]/g.test(vc_senha);
-        const is_contem_minuscula = /[a-z]/g.test(vc_senha);
-        const is_contem_numero = /[0-9]/gi.test(vc_senha);
-        const length = vc_senha.length;
+    static getItForcaSenha(password: string): any {
+        const is_contem_maiuscula = /[A-Z]/g.test(password);
+        const is_contem_minuscula = /[a-z]/g.test(password);
+        const is_contem_numero = /[0-9]/gi.test(password);
+        const length = password.length;
 
         const map_caracter = [
             '\\[',
@@ -41,7 +41,7 @@ export class SenhaUtils {
         ];
         const regex_str = `[${map_caracter.join('\\')}]`;
         const regex = new RegExp(regex_str, 'g');
-        const is_contem_caracter_especial = regex.test(vc_senha);
+        const is_contem_caracter_especial = regex.test(password);
 
         let it_diversidade = 0;
         if (is_contem_maiuscula) {

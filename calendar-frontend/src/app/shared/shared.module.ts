@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     exports: [],
@@ -14,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
         ReactiveFormsModule,
         MatInputModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule, RouterModule
     ],
 })
 export class SharedModule { }

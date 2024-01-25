@@ -9,7 +9,7 @@ export class CaptchaService {
     verificaTipoCaptcha(vc_operacao: string) {
         return this._http
             .get(
-                `${environment.baseUrl}/seguranca/captcha?vc_operacao=${vc_operacao}`
+                `${environment.baseUrl}/captcha?vc_operacao=${vc_operacao}`
             )
             .toPromise();
     }

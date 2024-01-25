@@ -3,7 +3,7 @@ import { IndividualConfig, ToastrService } from 'ngx-toastr';
 export class ToastrUtils {
   private static _toastr: ToastrService;
   static init(toastr: ToastrService): void {
-    ToastrUtils._toastr = toastr;
+    this._toastr = toastr;
   }
 
   static success(

@@ -1,0 +1,25 @@
+.header {
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+
+.days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    .selected {
+        background-color: #3498db;
+        color: #fff;
+        border-radius: 50%;
+    }
+}
