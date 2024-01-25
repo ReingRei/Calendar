@@ -7,5 +7,5 @@ export const authRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'logout', component: LogoutComponent },
-    { path: '*', redirectTo: 'login', component: LoginComponent },
+    // { path: '', redirectTo: 'login', component: LoginComponent },
 ];

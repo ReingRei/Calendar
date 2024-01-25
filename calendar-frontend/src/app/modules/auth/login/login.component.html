@@ -1,1 +1,27 @@
+<div class="w-full h-full min-h-screen sm:bg-slate-300 flex justify-center items-center">
 
+    <form *ngIf="formGroupLogin" [formGroup]="formGroupLogin"
+        class="max-w-md w-full bg-white flex flex-col space-y-2 p-6 sm:shadow sm:rounded-md">
+        <img class="w-20 h-20"
+            src="https://img.freepik.com/vetores-gratis/vetor-de-gradiente-de-logotipo-colorido-de-passaro_343694-1365.jpg?size=338&ext=jpg&ga=GA1.1.632798143.1706054400&semt=ais"
+            alt="Logo Marca">
+
+        <h1 class="text-2xl font-medium">Conecte-se</h1>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" inputmode="email" formCrontrolName="email">
+            <mat-icon matSuffix class="text-slate-400">mail</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" formCrontrolName="password">
+            <mat-icon matSuffix class="text-slate-400">password</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="w-full h-14">Entrar</button>
+
+        <p>Ainda não possuí uma conta? <a routerLink="/register" class="text-sky-500 underline">Cadastre-se aqui</a></p>
+    </form>
+</div>

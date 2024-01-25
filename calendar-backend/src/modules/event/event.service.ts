@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException,PreconditionFailedException } from "@nestjs/common";
+import { Injectable, UnauthorizedException, PreconditionFailedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateEventDto, UserDto } from "src/common/dto";
 import { EventEntity } from "src/entitys/event.entity";
@@ -38,38 +38,42 @@ export class EventService {
 
             await this._findCompetitorsTimetable(user.sub, payload);
 
-            const new_event = manager.create(EventEntity,)
+            const new_event = manager.create(EventEntity, {
+                idAuthor: user.sub,
+                description: payload.description,
+                endTime: payload.endTime,
+                startTime: payload.startTime,
+            });
+
+            await manager.insert(EventEntity, new_event);
+
+            // if (payload.guests) {}
         })
     }
 
-    private async _findCompetitorsTimetable(udserId: number, payload: CreateEventDto) {
+    private async _findCompetitorsTimetable(userId: number, payload: CreateEventDto) {
         const { startTime, endTime } = payload;
-        const result = await this._eventRepository.findOne({
-            where: [
-                {
-                    author: { id: udserId },
-                    startTime: Between(startTime, endTime)
-                },
-                {
-                    author: { id: udserId },
-                    endTime: Between(startTime, endTime)
-                },
-                {
-                    guests: { id: udserId },
-                    startTime: Between(startTime, endTime)
-                },
-                {
-                    guests: { id: udserId },
-                    endTime: Between(startTime, endTime)
-                },
-            ]
-        })
-
-        if (result) {
+        const event = await this._eventRepository
+            .createQueryBuilder('ev')
+            // .leftJoinAndSelect('ev.guests', 'gu', 'gu.id = :userId', { userId })
+            .where('ev.author = :userId', { userId })
+            .orWhere('ev')
+            .andWhere('ev.startTime BETWEEN :startTime AND :endTime', { startTime, endTime })
+            .orWhere('ev.endTime BETWEEN :startTime AND :endTime', { startTime, endTime })
+            .orWhere(':startTime BETWEEN ev.startTime AND ev.endTime', { startTime })
+            .orWhere(':startTime BETWEEN ev.startTime AND ev.endTime', { endTime })
+            .getOne();
+        if (event) {
             throw new PreconditionFailedException('Você já tem um evento nesse horário!')
         }
     }
 
+    private async _inviteForEvent(manager: EntityManager, idEvent: number, emails: string[]) {
+        
+    }
 
-    async updateEvents(user: UserDto, payload: CreateEventDto) { }
+
+    async updateEvents(user: UserDto, payload: CreateEventDto) {
+
+    }
 }

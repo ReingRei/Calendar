@@ -7,6 +7,9 @@ export class EventEntity {
   @PrimaryGeneratedColumn({type: 'int'})
   id: number;
 
+  @Column({ type: 'int' })
+  idAuthor: number
+
   @Column({ type: 'text' })
   description: string;
 
