@@ -48,6 +48,8 @@ export class EventService {
             await manager.insert(EventEntity, new_event);
 
             // if (payload.guests) {}
+
+            return new_event;
         })
     }
 
@@ -73,7 +75,7 @@ export class EventService {
     }
 
 
-    async updateEvents(user: UserDto, payload: CreateEventDto) {
+    async updateEvents(user: UserDto,idEvent:number, payload: CreateEventDto) {
 
     }
 }

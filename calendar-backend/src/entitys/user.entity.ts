@@ -7,7 +7,7 @@ export class UserEntity {
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
-    @Column({ type: 'varchar', length: 20 })
+    @Column({ type: 'varchar', length: 50 })
     name: string;
 
     @Column({ type: 'text' })

@@ -25,3 +25,25 @@
         <p>Ainda não possuí uma conta? <a routerLink="/register" class="text-sky-500 underline">Cadastre-se aqui</a></p>
     </form>
 </div>
+
+<div class="inline-flex items-end justify-between w-full mt-1.5">
+    <app-captcha #captcha
+        vc_operacao="heydelivery:uie:cadastro"
+        (onVerify)="onCaptchaResolve($event)"
+        (onReset)="onCaptchaReset($event)"></app-captcha>
+</div>
+
+@ViewChild('captcha') captcha: CaptchaComponent;
+
+onCaptchaReset(event): void {
+    this.cadastroForm.patchValue({
+        captcha: null,
+    });
+}
+
+onCaptchaResolve(event): void {
+    this.cadastroForm.patchValue({
+        captcha: event,
+    });
+}
+

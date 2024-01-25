@@ -1,0 +1,8 @@
+:host {
+    width: 100%;
+
+    ::ng-deep .h-captcha iframe {
+        width: 100%;
+        margin: 0 auto;
+    }
+}

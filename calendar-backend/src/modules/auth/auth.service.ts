@@ -23,7 +23,7 @@ export class AuthService {
     return bcrypt.compare(textPassword, hashedPassword);
   }
 
-  async login(user: UserEntity): Promise<{ access_token: string }> {
+  async login(user: UserEntity): Promise<{ accessToken: string }> {
     if (await this.validateUser(user.email, user.password)) {
       return this._getAccesToken(user);
     }
@@ -33,12 +33,12 @@ export class AuthService {
   private _getAccesToken(user: UserEntity): any {
     const payload = { name: user.name, sub: user.id };
     return {
-      access_token: payload,
-      // access_token: this._jwtService.sign(payload),
+      accessToken: payload,
+      // accessToken: this._jwtService.sign(payload),
     };
   }
 
-  async registerUser(payload: CreateUserDto): Promise<{ access_token: string }> {
+  async registerUser(payload: CreateUserDto): Promise<{ accessToken: string }> {
     const user = await this._userService.createUser(payload);
     return this._getAccesToken(user);
   }
